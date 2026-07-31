@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>6goodEXE | Official Website</title>
+
+    <!-- Open Graph / Discord / WhatsApp / Facebook Meta Tags -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://6goodexe.vercel.app/">
+    <meta property="og:title" content="6goodEXE | Official Website 🚀">
+    <meta property="og:description" content="موقع أحمد (6goodEXE) - مطور Node.js ومحب للألعاب والبرمجة. اكتشف الأدوات والألعاب الممتعة!">
+    <meta property="og:image" content="https://i.ibb.co/XYZ123/preview.png">
+
+    <!-- Twitter Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="6goodEXE | Official Website 🚀">
+    <meta name="twitter:description" content="موقع أحمد (6goodEXE) - مطور Node.js ومحب للألعاب والبرمجة.">
+    <meta name="twitter:image" content="https://i.ibb.co/XYZ123/preview.png">
+
+    <style>
+        :root {
+            --bg-color: #0b0f19;
+            --card-bg: rgba(22, 27, 34, 0.85);
+            --accent-color: #38bdf8;
+            --text-color: #f8fafc;
+            --subtext-color: #94a3b8;
+            --border-color: rgba(255, 255, 255, 0.1);
+            --cell-bg: #1e293b;
+        }
+
+        [data-theme="light"] {
+            --bg-color: #f1f5f9;
+            --card-bg: rgba(255, 255, 255, 0.9);
+            --accent-color: #0284c7;
+            --text-color: #0f172a;
+            --subtext-color: #475569;
+            --border-color: rgba(0, 0, 0, 0.1);
+            --cell-bg: #e2e8f0;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            cursor: none;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            overflow-x: hidden;
+            position: relative;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        #particles-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .custom-cursor-pointer {
+            width: 18px;
+            height: 22px;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            filter: drop-shadow(0 0 6px var(--accent-color));
+            transition: transform 0.1s ease;
+        }
+
+        .cursor-follower {
+            width: 32px;
+            height: 32px;
+            border: 1.5px solid var(--accent-color);
+            background: rgba(56, 189, 248, 0.05);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9998;
+            transform: translate(-50%, -50%);
+            transition: transform 0.15s ease-out;
+        }
+
+        .top-nav {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            padding: 15px;
+            z-index: 10;
+        }
+
+        .btn-nav {
+            background: var(--card-bg);
+            color: var(--text-color);
+            border: 1px solid var(--border-color);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: bold;
+            backdrop-filter: blur(10px);
+            transition: 0.2s;
+        }
+
+        .btn-nav:hover {
+            border-color: var(--accent-color);
+            color: var(--accent-color);
+            transform: translateY(-2px);
+        }
+
+        /* قائمة الكليك يمين */
+        .context-menu {
+            position: fixed;
+            z-index: 10000;
+            width: 230px;
+            background: var(--card-bg);
+            border: 1px solid var(--accent-color);
+            border-radius: 12px;
+            backdrop-filter: blur(16px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+            padding: 8px 0;
+            display: none;
+            opacity: 0;
+            transform: scale(0.95);
+            transition: opacity 0.15s ease, transform 0.15s ease;
+        }
+
+        .context-menu.active {
+            display: block;
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .context-menu-item {
+            padding: 12px 18px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 0.95rem;
+            font-weight: bold;
+            color: var(--text-color);
+            transition: 0.2s;
+        }
+
+        .context-menu-item:hover {
+            background: rgba(56, 189, 248, 0.15);
+            color: var(--accent-color);
+        }
+
+        header { text-align: center; padding: 20px 20px 10px; }
+        header h1 { font-size: 3rem; color: var(--accent-color); }
+        header p { color: var(--subtext-color); margin-top: 5px; }
+
+        .main-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            width: 100%;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 25px;
+            text-align: center;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
+        }
+
+        .page-section { display: none; }
+        .page-section.active-section { display: block; }
+
+        .tags {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 15px;
+        }
+
+        .tag {
+            background: rgba(56, 189, 248, 0.1);
+            color: var(--accent-color);
+            padding: 5px 12px;
+            border-radius: 12px;
+            border: 1px solid var(--accent-color);
+            font-size: 0.9rem;
+        }
+
+        /* لعبة Tic-Tac-Toe */
+        .board {
+            display: grid;
+            grid-template-columns: repeat(3, 90px);
+            gap: 10px;
+            justify-content: center;
+            margin: 20px 0;
+        }
+
+        .cell {
+            width: 90px;
+            height: 90px;
+            background-color: var(--cell-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            font-size: 2.5rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent-color);
+            transition: 0.2s;
+        }
+
+        .cell:hover { background-color: rgba(56, 189, 248, 0.2); }
+
+        .btn-action {
+            background-color: var(--accent-color);
+            color: #0b0f19;
+            border: none;
+            padding: 10px 20px;
+            font-weight: bold;
+            border-radius: 8px;
+            font-size: 1rem;
+            margin-top: 15px;
+            transition: 0.2s;
+        }
+
+        .btn-action:hover {
+            opacity: 0.9;
+            transform: scale(1.02);
+        }
+
+        /* تصميم أداة الباسورد */
+        .input-group {
+            position: relative;
+            margin: 20px 0 10px;
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 12px 16px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            background: var(--cell-bg);
+            color: var(--text-color);
+            font-size: 1rem;
+            outline: none;
+            text-align: inherit;
+        }
+
+        .strength-bar-wrapper {
+            height: 8px;
+            width: 100%;
+            background: var(--cell-bg);
+            border-radius: 4px;
+            overflow: hidden;
+            margin-top: 8px;
+        }
+
+        .strength-bar {
+            height: 100%;
+            width: 0%;
+            transition: width 0.3s, background-color 0.3s;
+        }
+
+        /* تصميم CPS Test */
+        .click-area {
+            width: 100%;
+            height: 180px;
+            background: var(--cell-bg);
+            border: 2px dashed var(--accent-color);
+            border-radius: 12px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin: 20px 0;
+            user-select: none;
+            transition: background 0.1s;
+        }
+
+        .click-area:active {
+            background: rgba(56, 189, 248, 0.2);
+        }
+
+        .cps-stats {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 15px;
+            font-size: 1.1rem;
+            font-weight: bold;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            border-top: 1px solid var(--border-color);
+            background: var(--card-bg);
+        }
+
+        .discord-link {
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: bold;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            transition: 0.3s;
+        }
+
+        .discord-link:hover {
+            background: rgba(56, 189, 248, 0.1);
+            border-color: var(--accent-color);
+        }
+    </style>
+</head>
+<body>
+
+    <canvas id="particles-canvas"></canvas>
+
+    <div class="custom-cursor-pointer" id="cursor">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M3 3L10.07 19.97L12.58 12.58L19.97 10.07L3 3Z" fill="#0b0f19" stroke="#38bdf8" stroke-width="1.5" stroke-linejoin="round"/>
+        </svg>
+    </div>
+    <div class="cursor-follower" id="follower"></div>
+
+    <div class="top-nav">
+        <button class="btn-nav" onclick="showSection('homeSection')" id="navHome">🏠 الرئيسية</button>
+        <button class="btn-nav" onclick="toggleTheme()" id="navTheme">🌙 Mode</button>
+        <button class="btn-nav" onclick="toggleLang()" id="navLang">English 🌐</button>
+    </div>
+
+    <!-- قائمة الكليك يمين الديناميكية بالعامية -->
+    <div class="context-menu" id="contextMenu">
+        <div class="context-menu-item" onclick="showSection('homeSection')">
+            <span>🏠</span> <span id="ctxHome">الرئيسية</span>
+        </div>
+        <div class="context-menu-item" onclick="showSection('gamesSection')">
+            <span>🎮</span> <span id="ctxGames">العب ضد البوت الذكي</span>
+        </div>
+        <div class="context-menu-item" onclick="showSection('passSection')">
+            <span>🔐</span> <span id="ctxPass">فحص قوة الباسورد</span>
+        </div>
+        <div class="context-menu-item" onclick="showSection('cpsSection')">
+            <span>⚡</span> <span id="ctxCps">اختبار سرعة النقر (CPS)</span>
+        </div>
+    </div>
+
+    <header>
+        <h1>6goodEXE</h1>
+        <p id="headerSubtitle">دوس كليك يمين في أي حتة عشان تتنقل في الموقع! 🖱️✨</p>
+    </header>
+
+    <div class="main-content">
+        
+        <!-- 1. الرئيسية بالعامية -->
+        <div id="homeSection" class="card page-section active-section">
+            <h2 id="aboutTitle">من هو 6goodEXE؟ 👋</h2>
+            <p id="aboutText" style="margin-top: 15px; color: var(--subtext-color); line-height: 1.8;">
+                أهلاً بيك! أنا <strong>أحمد (6goodEXE)</strong>، عندي 17 سنة. بعشق عالم البرمجة والألعاب، وشغوف جداً ببرمجة الـ Backend والشبكات بـ <strong>Node.js</strong>. عارف إني لسه في بداية الطريق وبتعلم كل يوم حاجة جديدة، بس شغفي وإصراري مكملين للآخر ومبيقفوش! 🚀
+            </p>
+            <div class="tags">
+                <span class="tag">🟢 Node.js</span>
+                <span class="tag">🎮 Gamer</span>
+                <span class="tag">💻 Coding Learner</span>
+                <span class="tag">⚡ 17 Years Old</span>
+            </div>
+        </div>
+
+        <!-- 2. قسم الألعاب بالعامية -->
+        <div id="gamesSection" class="card page-section">
+            <h2 id="gameTitle">🎮 لعب Tic-Tac-Toe ضد البوت الذكي</h2>
+            <p id="gameStatus" style="color: var(--subtext-color); margin-top: 10px;">دورك يا بطل! (أنت X والبوت O)</p>
+            
+            <div class="board">
+                <div class="cell" onclick="playerMove(this, 0)"></div>
+                <div class="cell" onclick="playerMove(this, 1)"></div>
+                <div class="cell" onclick="playerMove(this, 2)"></div>
+                <div class="cell" onclick="playerMove(this, 3)"></div>
+                <div class="cell" onclick="playerMove(this, 4)"></div>
+                <div class="cell" onclick="playerMove(this, 5)"></div>
+                <div class="cell" onclick="playerMove(this, 6)"></div>
+                <div class="cell" onclick="playerMove(this, 7)"></div>
+                <div class="cell" onclick="playerMove(this, 8)"></div>
+            </div>
+
+            <button class="btn-action" onclick="resetGame()" id="resetBtn">إعادة اللعب 🔄</button>
+        </div>
+
+        <!-- 3. قسم فحص الباسورد بالعامية -->
+        <div id="passSection" class="card page-section">
+            <h2 id="passTitle">🔐 أداة فحص قوة الباسورد</h2>
+            <p id="passSub" style="color: var(--subtext-color); margin-top: 8px;">اكتب الباسورد بتاعك وشوف هيتخمن في قد إيه ومدى قوته</p>
+            
+            <div class="input-group">
+                <input type="password" id="passInput" class="input-field" placeholder="اكتب الباسورد هنا..." oninput="checkPasswordStrength(this.value)">
+            </div>
+            
+            <div class="strength-bar-wrapper">
+                <div id="strengthBar" class="strength-bar"></div>
+            </div>
+            
+            <p id="passResult" style="margin-top: 15px; font-weight: bold; color: var(--accent-color);">-</p>
+        </div>
+
+        <!-- 4. قسم CPS Test بالعامية -->
+        <div id="cpsSection" class="card page-section">
+            <h2 id="cpsTitle">⚡ اختبار سرعة النقر (CPS Test)</h2>
+            <p id="cpsSub" style="color: var(--subtext-color); margin-top: 8px;">انقر بأسرع ما عندك جوه المربع لما تبدأ!</p>
+
+            <div class="click-area" id="clickArea" onclick="handleCPSClick()">
+                <h3 id="cpsAreaText">دوس هنا عشان تبدأ! 🖱️</h3>
+            </div>
+
+            <div class="cps-stats">
+                <div><span id="lblTime">⏱️ الوقت:</span> <span id="cpsTimer">5</span>s</div>
+                <div><span id="lblClicks">🖱️ النقرات:</span> <span id="cpsClicks">0</span></div>
+                <div><span id="lblSpeed">⚡ CPS:</span> <span id="cpsSpeed">0.0</span></div>
+            </div>
+
+            <button class="btn-action" onclick="resetCPS()" id="cpsResetBtn">إعادة الاختبار 🔄</button>
+        </div>
+
+    </div>
+
+    <footer>
+        <a href="https://discord.com/users/1471927444364591134" target="_blank" class="discord-link" id="discordBtn">
+            💬 كلمني على Discord
+        </a>
+    </footer>
+
+    <script>
+        // 1. حركة الماوس
+        const cursor = document.getElementById('cursor');
+        const follower = document.getElementById('follower');
+
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+            follower.style.left = e.clientX + 5 + 'px';
+            follower.style.top = e.clientY + 5 + 'px';
+        });
+
+        // 2. الثيمات
+        let isDark = true;
+        function toggleTheme() {
+            isDark = !isDark;
+            document.body.setAttribute('data-theme', isDark ? 'dark' : 'light');
+            document.getElementById('navTheme').innerText = isDark ? '🌙 Mode' : '☀️ Mode';
+        }
+
+        // 3. الترجمة بالعامية المصرية والإنجليزي الكاجوال 100%
+        let currentLang = 'ar';
+        const trans = {
+            ar: {
+                navHome: "🏠 الرئيسية",
+                subtitle: "دوس كليك يمين في أي حتة عشان تتنقل في الموقع! 🖱️✨",
+                aboutTitle: "من هو 6goodEXE؟ 👋",
+                aboutText: "أهلاً بيك! أنا <strong>أحمد (6goodEXE)</strong>، عندي 17 سنة. بعشق عالم البرمجة والألعاب، وشغوف جداً ببرمجة الـ Backend والشبكات بـ <strong>Node.js</strong>. عارف إني لسه في بداية الطريق وبتعلم كل يوم حاجة جديدة، بس شغفي وإصراري مكملين للآخر ومبيقفوش! 🚀",
+                gameTitle: "🎮 لعب Tic-Tac-Toe ضد البوت الذكي",
+                gameStatus: "دورك يا بطل! (أنت X والبوت O)",
+                resetBtn: "إعادة اللعب 🔄",
+                passTitle: "🔐 أداة فحص قوة الباسورد",
+                passSub: "اكتب الباسورد بتاعك وشوف هيتخمن في قد إيه ومدى قوته",
+                passPlaceholder: "اكتب الباسورد هنا...",
+                cpsTitle: "⚡ اختبار سرعة النقر (CPS Test)",
+                cpsSub: "انقر بأسرع ما عندك جوه المربع لما تبدأ!",
+                cpsAreaText: "دوس هنا عشان تبدأ! 🖱️",
+                cpsResetBtn: "إعادة الاختبار 🔄",
+                lblTime: "⏱️ الوقت:",
+                lblClicks: "🖱️ النقرات:",
+                lblSpeed: "⚡ CPS:",
+                ctxHome: "الرئيسية",
+                ctxGames: "العب ضد البوت الذكي",
+                ctxPass: "فحص قوة الباسورد",
+                ctxCps: "اختبار سرعة النقر (CPS)",
+                discordBtn: "💬 كلمني على Discord"
+            },
+            en: {
+                navHome: "🏠 Home",
+                subtitle: "Right-click anywhere to pop up navigation & tools! 🖱️✨",
+                aboutTitle: "Who is 6goodEXE? 👋",
+                aboutText: "Hey there! I'm <strong>Ahmed (6goodEXE)</strong>, 17 years old. Totally into coding & gaming, and super passionate about backend dev & networking with <strong>Node.js</strong>. I know I'm still at the starting line learning new stuff every day, but my drive never stops! 🚀",
+                gameTitle: "🎮 Tic-Tac-Toe vs Smart AI",
+                gameStatus: "Your turn buddy! (You are X, AI is O)",
+                resetBtn: "Play Again 🔄",
+                passTitle: "🔐 Password Strength Checker",
+                passSub: "Type in your pass to see how strong it really is",
+                passPlaceholder: "Type password here...",
+                cpsTitle: "⚡ Click Speed Test (CPS)",
+                cpsSub: "Spam your clicks inside the box as fast as u can!",
+                cpsAreaText: "Click here to start! 🖱️",
+                cpsResetBtn: "Reset Test 🔄",
+                lblTime: "⏱️ Time:",
+                lblClicks: "🖱️ Clicks:",
+                lblSpeed: "⚡ CPS:",
+                ctxHome: "Home",
+                ctxGames: "Play vs AI",
+                ctxPass: "Password Checker",
+                ctxCps: "CPS Click Test",
+                discordBtn: "💬 Hit me up on Discord"
+            }
+        };
+
+        function toggleLang() {
+            currentLang = currentLang === 'ar' ? 'en' : 'ar';
+            document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
+            document.documentElement.lang = currentLang;
+
+            const t = trans[currentLang];
+            
+            // تحديث الواجهة الرئيسية والأزرار
+            document.getElementById('navHome').innerText = t.navHome;
+            document.getElementById('headerSubtitle').innerText = t.subtitle;
+            document.getElementById('aboutTitle').innerText = t.aboutTitle;
+            document.getElementById('aboutText').innerHTML = t.aboutText;
+            
+            // تحديث قسم الألعاب
+            document.getElementById('gameTitle').innerText = t.gameTitle;
+            document.getElementById('gameStatus').innerText = t.gameStatus;
+            document.getElementById('resetBtn').innerText = t.resetBtn;
+            
+            // تحديث قسم فحص الباسورد + الـ Placeholder
+            document.getElementById('passTitle').innerText = t.passTitle;
+            document.getElementById('passSub').innerText = t.passSub;
+            document.getElementById('passInput').placeholder = t.passPlaceholder;
+            
+            // تحديث قسم الـ CPS Test والإحصائيات
+            document.getElementById('cpsTitle').innerText = t.cpsTitle;
+            document.getElementById('cpsSub').innerText = t.cpsSub;
+            document.getElementById('cpsResetBtn').innerText = t.cpsResetBtn;
+            document.getElementById('lblTime').innerText = t.lblTime;
+            document.getElementById('lblClicks').innerText = t.lblClicks;
+            document.getElementById('lblSpeed').innerText = t.lblSpeed;
+            if (!cpsRunning && cpsClicks === 0) {
+                document.getElementById('cpsAreaText').innerText = t.cpsAreaText;
+            }
+
+            // تحديث قائمة الكليك يمين بالكامل
+            document.getElementById('ctxHome').innerText = t.ctxHome;
+            document.getElementById('ctxGames').innerText = t.ctxGames;
+            document.getElementById('ctxPass').innerText = t.ctxPass;
+            document.getElementById('ctxCps').innerText = t.ctxCps;
+
+            // تحديث الفوتر
+            document.getElementById('discordBtn').innerText = t.discordBtn;
+
+            // تغيير زرار اللغة
+            document.getElementById('navLang').innerText = currentLang === 'ar' ? 'English 🌐' : 'عربي 🌐';
+        }
+
+        // 4. التحكم في قائمة الكليك يمين
+        const contextMenu = document.getElementById('contextMenu');
+        document.addEventListener('contextmenu', (e) => {
+            e.preventDefault();
+            let posX = e.clientX, posY = e.clientY;
+            if (posX + 230 > window.innerWidth) posX = window.innerWidth - 240;
+            if (posY + 150 > window.innerHeight) posY = window.innerHeight - 160;
+            contextMenu.style.left = posX + 'px';
+            contextMenu.style.top = posY + 'px';
+            contextMenu.classList.add('active');
+        });
+
+        document.addEventListener('click', () => contextMenu.classList.remove('active'));
+
+        function showSection(sectionId) {
+            document.querySelectorAll('.page-section').forEach(sec => sec.classList.remove('active-section'));
+            document.getElementById(sectionId).classList.add('active-section');
+        }
+
+        // 5. لعبة Tic-Tac-Toe بالعامية
+        let board = ['', '', '', '', '', '', '', '', ''];
+        let gameActive = true;
+
+        function playerMove(cell, index) {
+            if (board[index] !== '' || !gameActive) return;
+            makeMove(index, 'X');
+            if (checkWinner('X')) {
+                document.getElementById('gameStatus').innerText = currentLang === 'ar' ? "جامد! كسبت البوت 🔥🎉" : "You smoked the AI! GG 🎉";
+                gameActive = false;
+                return;
+            }
+            if (!board.includes('')) {
+                document.getElementById('gameStatus').innerText = currentLang === 'ar' ? "تعادل يا بطل!" : "It's a draw!";
+                gameActive = false;
+                return;
+            }
+            document.getElementById('gameStatus').innerText = currentLang === 'ar' ? "البوت بيفكر... 🤖" : "AI is thinking... 🤖";
+            setTimeout(aiMove, 350);
+        }
+
+        function aiMove() {
+            if (!gameActive) return;
+            let bestIndex = findBestMove();
+            makeMove(bestIndex, 'O');
+            if (checkWinner('O')) {
+                document.getElementById('gameStatus').innerText = currentLang === 'ar' ? "البوت جابها! حاول تاني 🤖" : "AI took the dub! Try again 🤖";
+                gameActive = false;
+                return;
+            }
+            if (!board.includes('')) {
+                document.getElementById('gameStatus').innerText = currentLang === 'ar' ? "تعادل يا بطل!" : "It's a draw!";
+                gameActive = false;
+                return;
+            }
+            document.getElementById('gameStatus').innerText = currentLang === 'ar' ? "دورك يا بطل! (أنت X)" : "Your turn buddy! (You are X)";
+        }
+
+        function makeMove(index, symbol) {
+            board[index] = symbol;
+            document.getElementsByClassName('cell')[index].innerText = symbol;
+        }
+
+        function findBestMove() {
+            for (let i = 0; i < 9; i++) {
+                if (board[i] === '') {
+                    board[i] = 'O';
+                    if (checkWinner('O')) { board[i] = ''; return i; }
+                    board[i] = '';
+                }
+            }
+            for (let i = 0; i < 9; i++) {
+                if (board[i] === '') {
+                    board[i] = 'X';
+                    if (checkWinner('X')) { board[i] = ''; return i; }
+                    board[i] = '';
+                }
+            }
+            if (board[4] === '') return 4;
+            let emptyIndices = board.map((val, idx) => val === '' ? idx : null).filter(val => val !== null);
+            return emptyIndices[Math.floor(Math.random() * emptyIndices.length)];
+        }
+
+        function checkWinner(symbol) {
+            const wins = [[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]];
+            return wins.some(c => c.every(i => board[i] === symbol));
+        }
+
+        function resetGame() {
+            board = ['', '', '', '', '', '', '', '', ''];
+            gameActive = true;
+            document.getElementById('gameStatus').innerText = trans[currentLang].gameStatus;
+            document.querySelectorAll('.cell').forEach(c => c.innerText = '');
+        }
+
+        // 6. أداة فحص الباسورد بالعامية
+        function checkPasswordStrength(pass) {
+            const bar = document.getElementById('strengthBar');
+            const result = document.getElementById('passResult');
+
+            if (!pass) {
+                bar.style.width = '0%';
+                result.innerText = '-';
+                return;
+            }
+
+            let score = 0;
+            if (pass.length >= 8) score += 25;
+            if (pass.length >= 12) score += 15;
+            if (/[0-9]/.test(pass)) score += 20;
+            if (/[a-z]/.test(pass) && /[A-Z]/.test(pass)) score += 20;
+            if (/[^a-zA-Z0-9]/.test(pass)) score += 20;
+
+            bar.style.width = score + '%';
+
+            if (score < 40) {
+                bar.style.backgroundColor = '#ef4444';
+                result.innerText = currentLang === 'ar' ? "🔴 باسورد ضعيف جداً وسهل يتخمن" : "🔴 Very weak pass, easy to crack";
+            } else if (score < 75) {
+                bar.style.backgroundColor = '#f59e0b';
+                result.innerText = currentLang === 'ar' ? "🟡 باسورد نص نص.. ممكن يتقوى" : "🟡 Decent pass, could be better";
+            } else {
+                bar.style.backgroundColor = '#10b981';
+                result.innerText = currentLang === 'ar' ? "🟢 باسورد حديدي وعاش عليك!" : "🟢 Super strong pass, solid work!";
+            }
+        }
+
+        // 7. لعبة CPS Test بالعامية
+        let cpsClicks = 0;
+        let cpsTimeLeft = 5;
+        let cpsTimer = null;
+        let cpsRunning = false;
+
+        function handleCPSClick() {
+            if (!cpsRunning && cpsTimeLeft === 5) {
+                cpsRunning = true;
+                document.getElementById('cpsAreaText').innerText = currentLang === 'ar' ? "دوس بأسرع ما عندك!! 🔥" : "Spam it fast!! 🔥";
+                cpsTimer = setInterval(() => {
+                    cpsTimeLeft--;
+                    document.getElementById('cpsTimer').innerText = cpsTimeLeft;
+                    if (cpsTimeLeft <= 0) {
+                        clearInterval(cpsTimer);
+                        finishCPS();
+                    }
+                }, 1000);
+            }
+
+            if (cpsRunning) {
+                cpsClicks++;
+                document.getElementById('cpsClicks').innerText = cpsClicks;
+                document.getElementById('cpsSpeed').innerText = (cpsClicks / (5 - cpsTimeLeft || 1)).toFixed(1);
+            }
+        }
+
+        function finishCPS() {
+            cpsRunning = false;
+            const finalCPS = (cpsClicks / 5).toFixed(1);
+            let rank = "🐢 بطيء كسلان";
+            if (finalCPS > 5) rank = "🐇 سريع كويّس";
+            if (finalCPS > 8) rank = "🐆 سريع جداً (فهد)";
+            if (finalCPS > 11) rank = "⚡ God Clicker مرعب!";
+
+            document.getElementById('cpsAreaText').innerText = 
+                currentLang === 'ar' 
+                ? `خلص الوقت! النتيجة: ${finalCPS} CPS (${rank})` 
+                : `Time's up! Score: ${finalCPS} CPS (${rank})`;
+        }
+
+        function resetCPS() {
+            clearInterval(cpsTimer);
+            cpsClicks = 0;
+            cpsTimeLeft = 5;
+            cpsRunning = false;
+            document.getElementById('cpsTimer').innerText = '5';
+            document.getElementById('cpsClicks').innerText = '0';
+            document.getElementById('cpsSpeed').innerText = '0.0';
+            document.getElementById('cpsAreaText').innerText = trans[currentLang].cpsAreaText;
+        }
+
+        // 8. خلفية الكرات
+        const canvas = document.getElementById('particles-canvas');
+        const ctx = canvas.getContext('2d');
+        function resizeCanvas() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+
+        const particlesArray = [];
+        for (let i = 0; i < 55; i++) {
+            particlesArray.push({
+                x: Math.random() * canvas.width, y: Math.random() * canvas.height,
+                size: Math.random() * 3 + 1.5, speedX: (Math.random() - 0.5) * 0.5, speedY: (Math.random() - 0.5) * 0.5,
+                color: `rgba(56, 189, 248, ${Math.random() * 0.5 + 0.2})`
+            });
+        }
+
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particlesArray.forEach((p, index) => {
+                p.x += p.speedX; p.y += p.speedY;
+                if (p.x < 0) p.x = canvas.width; if (p.x > canvas.width) p.x = 0;
+                if (p.y < 0) p.y = canvas.height; if (p.y > canvas.height) p.y = 0;
+
+                ctx.beginPath(); ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                ctx.fillStyle = p.color; ctx.fill();
+
+                for (let j = index; j < particlesArray.length; j++) {
+                    const dx = p.x - particlesArray[j].x, dy = p.y - particlesArray[j].y;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+                    if (dist < 100) {
+                        ctx.beginPath();
+                        ctx.strokeStyle = `rgba(56, 189, 248, ${0.15 - dist / 700})`;
+                        ctx.lineWidth = 0.5;
+                        ctx.moveTo(p.x, p.y); ctx.lineTo(particlesArray[j].x, particlesArray[j].y);
+                        ctx.stroke();
+                    }
+                }
+            });
+            requestAnimationFrame(animateParticles);
+        }
+        animateParticles();
+    </script>
+</body>
+</html>
