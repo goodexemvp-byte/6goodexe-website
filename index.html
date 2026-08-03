@@ -5,21 +5,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>6goodEXE | Official Website</title>
-
-    <!-- Open Graph / Discord / WhatsApp / Facebook Meta Tags -->
- <!-- Open Graph / Discord / WhatsApp / Facebook Meta Tags -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://6goodexe-v1.vercel.app/">
     <meta property="og:title" content="6goodEXE | Official Website 🚀">
     <meta property="og:description" content="Ahmed (6goodEXE) - 17yo Node.js & Backend developer. Gamer, tech lover, and coding enthusiast. Check out my tools & games!">
     <meta property="og:image" content="https://kommodo.ai/i/ez1nUUB1aloyKTv390pc">
-
-    <!-- Twitter Meta Tags -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="6goodEXE | Official Website 🚀">
     <meta name="twitter:description" content="Ahmed (6goodEXE) - 17yo Node.js & Backend developer. Gamer, tech lover, and coding enthusiast. Check out my tools & games!">
     <meta name="twitter:image" content="https://kommodo.ai/i/ez1nUUB1aloyKTv390pc">
-
     <style>
         :root {
             --bg-color: #0b0f19;
@@ -119,7 +113,6 @@
             transform: translateY(-2px);
         }
 
-        /* قائمة الكليك يمين */
         .context-menu {
             position: fixed;
             z-index: 10000;
@@ -158,9 +151,20 @@
             color: var(--accent-color);
         }
 
-        header { text-align: center; padding: 20px 20px 10px; }
-        header h1 { font-size: 3rem; color: var(--accent-color); }
-        header p { color: var(--subtext-color); margin-top: 5px; }
+        header {
+            text-align: center;
+            padding: 20px 20px 10px;
+        }
+
+        header h1 {
+            font-size: 3rem;
+            color: var(--accent-color);
+        }
+
+        header p {
+            color: var(--subtext-color);
+            margin-top: 5px;
+        }
 
         .main-content {
             max-width: 800px;
@@ -180,8 +184,13 @@
             box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
         }
 
-        .page-section { display: none; }
-        .page-section.active-section { display: block; }
+        .page-section {
+            display: none;
+        }
+
+        .page-section.active-section {
+            display: block;
+        }
 
         .tags {
             display: flex;
@@ -200,7 +209,6 @@
             font-size: 0.9rem;
         }
 
-        /* لعبة Tic-Tac-Toe */
         .board {
             display: grid;
             grid-template-columns: repeat(3, 90px);
@@ -224,7 +232,9 @@
             transition: 0.2s;
         }
 
-        .cell:hover { background-color: rgba(56, 189, 248, 0.2); }
+        .cell:hover {
+            background-color: rgba(56, 189, 248, 0.2);
+        }
 
         .btn-action {
             background-color: var(--accent-color);
@@ -243,7 +253,6 @@
             transform: scale(1.02);
         }
 
-        /* تصميم أداة الباسورد */
         .input-group {
             position: relative;
             margin: 20px 0 10px;
@@ -276,7 +285,6 @@
             transition: width 0.3s, background-color 0.3s;
         }
 
-        /* تصميم CPS Test */
         .click-area {
             width: 100%;
             height: 180px;
@@ -331,7 +339,6 @@
     </style>
 </head>
 <body>
-
     <canvas id="particles-canvas"></canvas>
 
     <div class="custom-cursor-pointer" id="cursor">
@@ -347,7 +354,6 @@
         <button class="btn-nav" onclick="toggleLang()" id="navLang">English 🌐</button>
     </div>
 
-    <!-- قائمة الكليك يمين الديناميكية بالعامية -->
     <div class="context-menu" id="contextMenu">
         <div class="context-menu-item" onclick="showSection('homeSection')">
             <span>🏠</span> <span id="ctxHome">الرئيسية</span>
@@ -369,8 +375,6 @@
     </header>
 
     <div class="main-content">
-        
-        <!-- 1. الرئيسية بالعامية -->
         <div id="homeSection" class="card page-section active-section">
             <h2 id="aboutTitle">من هو 6goodEXE؟ 👋</h2>
             <p id="aboutText" style="margin-top: 15px; color: var(--subtext-color); line-height: 1.8;">
@@ -384,11 +388,9 @@
             </div>
         </div>
 
-        <!-- 2. قسم الألعاب بالعامية -->
         <div id="gamesSection" class="card page-section">
             <h2 id="gameTitle">🎮 لعب Tic-Tac-Toe ضد البوت الذكي</h2>
             <p id="gameStatus" style="color: var(--subtext-color); margin-top: 10px;">دورك يا بطل! (أنت X والبوت O)</p>
-            
             <div class="board">
                 <div class="cell" onclick="playerMove(this, 0)"></div>
                 <div class="cell" onclick="playerMove(this, 1)"></div>
@@ -400,44 +402,34 @@
                 <div class="cell" onclick="playerMove(this, 7)"></div>
                 <div class="cell" onclick="playerMove(this, 8)"></div>
             </div>
-
             <button class="btn-action" onclick="resetGame()" id="resetBtn">إعادة اللعب 🔄</button>
         </div>
 
-        <!-- 3. قسم فحص الباسورد بالعامية -->
         <div id="passSection" class="card page-section">
             <h2 id="passTitle">🔐 أداة فحص قوة الباسورد</h2>
             <p id="passSub" style="color: var(--subtext-color); margin-top: 8px;">اكتب الباسورد بتاعك وشوف هيتخمن في قد إيه ومدى قوته</p>
-            
             <div class="input-group">
                 <input type="password" id="passInput" class="input-field" placeholder="اكتب الباسورد هنا..." oninput="checkPasswordStrength(this.value)">
             </div>
-            
             <div class="strength-bar-wrapper">
                 <div id="strengthBar" class="strength-bar"></div>
             </div>
-            
             <p id="passResult" style="margin-top: 15px; font-weight: bold; color: var(--accent-color);">-</p>
         </div>
 
-        <!-- 4. قسم CPS Test بالعامية -->
         <div id="cpsSection" class="card page-section">
             <h2 id="cpsTitle">⚡ اختبار سرعة النقر (CPS Test)</h2>
             <p id="cpsSub" style="color: var(--subtext-color); margin-top: 8px;">انقر بأسرع ما عندك جوه المربع لما تبدأ!</p>
-
             <div class="click-area" id="clickArea" onclick="handleCPSClick()">
                 <h3 id="cpsAreaText">دوس هنا عشان تبدأ! 🖱️</h3>
             </div>
-
             <div class="cps-stats">
                 <div><span id="lblTime">⏱️ الوقت:</span> <span id="cpsTimer">5</span>s</div>
                 <div><span id="lblClicks">🖱️ النقرات:</span> <span id="cpsClicks">0</span></div>
                 <div><span id="lblSpeed">⚡ CPS:</span> <span id="cpsSpeed">0.0</span></div>
             </div>
-
             <button class="btn-action" onclick="resetCPS()" id="cpsResetBtn">إعادة الاختبار 🔄</button>
         </div>
-
     </div>
 
     <footer>
@@ -447,7 +439,6 @@
     </footer>
 
     <script>
-        // 1. حركة الماوس
         const cursor = document.getElementById('cursor');
         const follower = document.getElementById('follower');
 
@@ -458,7 +449,6 @@
             follower.style.top = e.clientY + 5 + 'px';
         });
 
-        // 2. الثيمات
         let isDark = true;
         function toggleTheme() {
             isDark = !isDark;
@@ -466,7 +456,6 @@
             document.getElementById('navTheme').innerText = isDark ? '🌙 Mode' : '☀️ Mode';
         }
 
-        // 3. الترجمة بالعامية المصرية والإنجليزي الكاجوال 100%
         let currentLang = 'ar';
         const trans = {
             ar: {
@@ -525,48 +514,35 @@
             document.documentElement.lang = currentLang;
 
             const t = trans[currentLang];
-            
-            // تحديث الواجهة الرئيسية والأزرار
             document.getElementById('navHome').innerText = t.navHome;
             document.getElementById('headerSubtitle').innerText = t.subtitle;
             document.getElementById('aboutTitle').innerText = t.aboutTitle;
             document.getElementById('aboutText').innerHTML = t.aboutText;
-            
-            // تحديث قسم الألعاب
             document.getElementById('gameTitle').innerText = t.gameTitle;
             document.getElementById('gameStatus').innerText = t.gameStatus;
             document.getElementById('resetBtn').innerText = t.resetBtn;
-            
-            // تحديث قسم فحص الباسورد + الـ Placeholder
             document.getElementById('passTitle').innerText = t.passTitle;
             document.getElementById('passSub').innerText = t.passSub;
             document.getElementById('passInput').placeholder = t.passPlaceholder;
-            
-            // تحديث قسم الـ CPS Test والإحصائيات
             document.getElementById('cpsTitle').innerText = t.cpsTitle;
             document.getElementById('cpsSub').innerText = t.cpsSub;
             document.getElementById('cpsResetBtn').innerText = t.cpsResetBtn;
             document.getElementById('lblTime').innerText = t.lblTime;
             document.getElementById('lblClicks').innerText = t.lblClicks;
             document.getElementById('lblSpeed').innerText = t.lblSpeed;
+
             if (!cpsRunning && cpsClicks === 0) {
                 document.getElementById('cpsAreaText').innerText = t.cpsAreaText;
             }
 
-            // تحديث قائمة الكليك يمين بالكامل
             document.getElementById('ctxHome').innerText = t.ctxHome;
             document.getElementById('ctxGames').innerText = t.ctxGames;
             document.getElementById('ctxPass').innerText = t.ctxPass;
             document.getElementById('ctxCps').innerText = t.ctxCps;
-
-            // تحديث الفوتر
             document.getElementById('discordBtn').innerText = t.discordBtn;
-
-            // تغيير زرار اللغة
             document.getElementById('navLang').innerText = currentLang === 'ar' ? 'English 🌐' : 'عربي 🌐';
         }
 
-        // 4. التحكم في قائمة الكليك يمين
         const contextMenu = document.getElementById('contextMenu');
         document.addEventListener('contextmenu', (e) => {
             e.preventDefault();
@@ -585,7 +561,6 @@
             document.getElementById(sectionId).classList.add('active-section');
         }
 
-        // 5. لعبة Tic-Tac-Toe بالعامية
         let board = ['', '', '', '', '', '', '', '', ''];
         let gameActive = true;
 
@@ -660,7 +635,6 @@
             document.querySelectorAll('.cell').forEach(c => c.innerText = '');
         }
 
-        // 6. أداة فحص الباسورد بالعامية
         function checkPasswordStrength(pass) {
             const bar = document.getElementById('strengthBar');
             const result = document.getElementById('passResult');
@@ -692,7 +666,6 @@
             }
         }
 
-        // 7. لعبة CPS Test بالعامية
         let cpsClicks = 0;
         let cpsTimeLeft = 5;
         let cpsTimer = null;
@@ -744,7 +717,6 @@
             document.getElementById('cpsAreaText').innerText = trans[currentLang].cpsAreaText;
         }
 
-        // 8. خلفية الكرات
         const canvas = document.getElementById('particles-canvas');
         const ctx = canvas.getContext('2d');
         function resizeCanvas() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
