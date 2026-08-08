@@ -8,62 +8,353 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://6goodexe-v1.vercel.app/">
     <meta property="og:title" content="6goodEXE | Official Website 🚀">
-    <meta property="og:description" content="Ahmed (6goodEXE) from Egypt - 17yo Node.js & Backend developer. Gamer, tech lover, and coding enthusiast. Check out my tools & games!">
+    <meta property="og:description" content="Ahmed (6goodEXE) - 17yo Node.js & Backend developer. Gamer, tech lover, and coding enthusiast. Check out my tools & games!">
     <meta property="og:image" content="https://kommodo.ai/i/ez1nUUB1aloyKTv390pc">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="6goodEXE | Official Website 🚀">
-    <meta name="twitter:description" content="Ahmed (6goodEXE) from Egypt - 17yo Node.js & Backend developer. Gamer, tech lover, and coding enthusiast. Check out my tools & games!">
+    <meta name="twitter:description" content="Ahmed (6goodEXE) - 17yo Node.js & Backend developer. Gamer, tech lover, and coding enthusiast. Check out my tools & games!">
     <meta name="twitter:image" content="https://kommodo.ai/i/ez1nUUB1aloyKTv390pc">
     <style>
-:root{--bg-color:#0b0f19;--card-bg:rgba(22,27,34,0.85);--accent-color:#38bdf8;--text-color:#f8fafc;--subtext-color:#94a3b8;--border-color:rgba(255,255,255,0.1);--cell-bg:#1e293b;}
-[data-theme="light"]{--bg-color:#f1f5f9;--card-bg:rgba(255,255,255,0.9);--accent-color:#0284c7;--text-color:#0f172a;--subtext-color:#475569;--border-color:rgba(0,0,0,0.1);--cell-bg:#e2e8f0;}
-*{box-sizing:border-box;margin:0;padding:0;}
-@media (hover:hover) and (pointer:fine){
-*{cursor:none !important;}
-.custom-cursor-pointer{width:18px;height:22px;position:fixed;pointer-events:none;z-index:100000;filter:drop-shadow(0 0 6px var(--accent-color));display:block;opacity:0;transition:opacity 0.2s ease;}
-.cursor-follower{width:32px;height:32px;border:1.5px solid var(--accent-color);background:rgba(56,189,248,0.05);border-radius:50%;position:fixed;pointer-events:none;z-index:99999;transform:translate(-50%,-50%);display:block;opacity:0;transition:opacity 0.2s ease;}
-}
-@media (hover:none),(pointer:coarse){
-*{cursor:auto !important;}
-.custom-cursor-pointer,.cursor-follower{display:none !important;}
-}
-body{background-color:var(--bg-color);color:var(--text-color);font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;min-height:100vh;display:flex;flex-direction:column;justify-content:space-between;overflow-x:hidden;position:relative;transition:background-color 0.3s,color 0.3s;}
-#particles-canvas{position:fixed;top:0;left:0;width:100%;height:100%;z-index:-1;pointer-events:none;}
-.top-nav{display:flex;justify-content:center;gap:12px;padding:15px;z-index:10;}
-.btn-nav{background:var(--card-bg);color:var(--text-color);border:1px solid var(--border-color);padding:8px 16px;border-radius:20px;font-weight:bold;backdrop-filter:blur(10px);transition:0.2s;}
-.btn-nav:hover{border-color:var(--accent-color);color:var(--accent-color);transform:translateY(-2px);}
-.context-menu{position:fixed;z-index:10000;width:230px;background:var(--card-bg);border:1px solid var(--accent-color);border-radius:12px;backdrop-filter:blur(16px);box-shadow:0 10px 25px rgba(0,0,0,0.4);padding:8px 0;display:none;opacity:0;transform:scale(0.95);transition:opacity 0.15s ease,transform 0.15s ease;}
-.context-menu.active{display:block;opacity:1;transform:scale(1);}
-.context-menu-item{padding:12px 18px;display:flex;align-items:center;gap:12px;font-size:0.95rem;font-weight:bold;color:var(--text-color);transition:0.2s;}
-.context-menu-item:hover{background:rgba(56,189,248,0.15);color:var(--accent-color);}
-header{text-align:center;padding:20px 20px 10px;}
-header h1{font-size:3rem;color:var(--accent-color);}
-header p{color:var(--subtext-color);margin-top:5px;}
-.main-content{max-width:800px;margin:0 auto;padding:20px;width:100%;}
-.card{background:var(--card-bg);border:1px solid var(--border-color);backdrop-filter:blur(10px);border-radius:16px;padding:30px;margin-bottom:25px;text-align:center;box-shadow:0 8px 32px 0 rgba(0,0,0,0.2);}
-.page-section{display:none;}
-.page-section.active-section{display:block;}
-.tags{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-top:15px;}
-.tag{background:rgba(56,189,248,0.1);color:var(--accent-color);padding:5px 12px;border-radius:12px;border:1px solid var(--accent-color);font-size:0.9rem;}
-.score-board{display:flex;justify-content:center;gap:20px;margin:15px 0 5px;}
-.score-box{background:var(--cell-bg);border:1px solid var(--border-color);border-radius:10px;padding:8px 18px;text-align:center;min-width:100px;}
-.score-title{font-size:0.85rem;color:var(--subtext-color);}
-.score-num{font-size:1.4rem;font-weight:bold;color:var(--accent-color);}
-.board{display:grid;grid-template-columns:repeat(3,90px);gap:10px;justify-content:center;margin:20px 0;}
-.cell{width:90px;height:90px;background-color:var(--cell-bg);border:1px solid var(--border-color);border-radius:10px;font-size:2.5rem;font-weight:bold;display:flex;align-items:center;justify-content:center;color:var(--accent-color);transition:0.2s;}
-.cell:hover{background-color:rgba(56,189,248,0.2);}
-.btn-action{background-color:var(--accent-color);color:#0b0f19;border:none;padding:10px 20px;font-weight:bold;border-radius:8px;font-size:1rem;margin-top:15px;transition:0.2s;}
-.btn-action:hover{opacity:0.9;transform:scale(1.02);}
-.input-group{position:relative;margin:20px 0 10px;}
-.input-field{width:100%;padding:12px 16px;border-radius:8px;border:1px solid var(--border-color);background:var(--cell-bg);color:var(--text-color);font-size:1rem;outline:none;text-align:inherit;}
-.strength-bar-wrapper{height:8px;width:100%;background:var(--cell-bg);border-radius:4px;overflow:hidden;margin-top:8px;}
-.strength-bar{height:100%;width:0%;transition:width 0.3s,background-color 0.3s;}
-.click-area{width:100%;height:180px;background:var(--cell-bg);border:2px dashed var(--accent-color);border-radius:12px;display:flex;flex-direction:column;align-items:center;justify-content:center;margin:20px 0;user-select:none;transition:background 0.1s;}
-.click-area:active{background:rgba(56,189,248,0.2);}
-.cps-stats{display:flex;justify-content:space-around;margin-top:15px;font-size:1.1rem;font-weight:bold;}
-footer{text-align:center;padding:20px;border-top:1px solid var(--border-color);background:var(--card-bg);}
-.discord-link{color:var(--accent-color);text-decoration:none;font-weight:bold;display:inline-flex;align-items:center;gap:8px;padding:8px 16px;border:1px solid var(--border-color);border-radius:20px;transition:0.3s;}
-.discord-link:hover{background:rgba(56,189,248,0.1);border-color:var(--accent-color);}
+        :root {
+            --bg-color: #0b0f19;
+            --card-bg: rgba(22, 27, 34, 0.85);
+            --accent-color: #38bdf8;
+            --text-color: #f8fafc;
+            --subtext-color: #94a3b8;
+            --border-color: rgba(255, 255, 255, 0.1);
+            --cell-bg: #1e293b;
+        }
+
+        [data-theme="light"] {
+            --bg-color: #f1f5f9;
+            --card-bg: rgba(255, 255, 255, 0.9);
+            --accent-color: #0284c7;
+            --text-color: #0f172a;
+            --subtext-color: #475569;
+            --border-color: rgba(0, 0, 0, 0.1);
+            --cell-bg: #e2e8f0;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        @media (hover: hover) and (pointer: fine) {
+            * {
+                cursor: none !important;
+            }
+
+            .custom-cursor-pointer {
+                width: 18px;
+                height: 22px;
+                position: fixed;
+                pointer-events: none;
+                z-index: 100000;
+                filter: drop-shadow(0 0 6px var(--accent-color));
+                display: block;
+                opacity: 0;
+                transition: opacity 0.2s ease;
+            }
+
+            .cursor-follower {
+                width: 32px;
+                height: 32px;
+                border: 1.5px solid var(--accent-color);
+                background: rgba(56, 189, 248, 0.05);
+                border-radius: 50%;
+                position: fixed;
+                pointer-events: none;
+                z-index: 99999;
+                transform: translate(-50%, -50%);
+                display: block;
+                opacity: 0;
+                transition: opacity 0.2s ease;
+            }
+        }
+
+        @media (hover: none), (pointer: coarse) {
+            * {
+                cursor: auto !important;
+            }
+            .custom-cursor-pointer,
+            .cursor-follower {
+                display: none !important;
+            }
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            overflow-x: hidden;
+            position: relative;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        #particles-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .top-nav {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            padding: 15px;
+            z-index: 10;
+        }
+
+        .btn-nav {
+            background: var(--card-bg);
+            color: var(--text-color);
+            border: 1px solid var(--border-color);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: bold;
+            backdrop-filter: blur(10px);
+            transition: 0.2s;
+        }
+
+        .btn-nav:hover {
+            border-color: var(--accent-color);
+            color: var(--accent-color);
+            transform: translateY(-2px);
+        }
+
+        .context-menu {
+            position: fixed;
+            z-index: 10000;
+            width: 230px;
+            background: var(--card-bg);
+            border: 1px solid var(--accent-color);
+            border-radius: 12px;
+            backdrop-filter: blur(16px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+            padding: 8px 0;
+            display: none;
+            opacity: 0;
+            transform: scale(0.95);
+            transition: opacity 0.15s ease, transform 0.15s ease;
+        }
+
+        .context-menu.active {
+            display: block;
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .context-menu-item {
+            padding: 12px 18px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 0.95rem;
+            font-weight: bold;
+            color: var(--text-color);
+            transition: 0.2s;
+        }
+
+        .context-menu-item:hover {
+            background: rgba(56, 189, 248, 0.15);
+            color: var(--accent-color);
+        }
+
+        header {
+            text-align: center;
+            padding: 20px 20px 10px;
+        }
+
+        header h1 {
+            font-size: 3rem;
+            color: var(--accent-color);
+        }
+
+        header p {
+            color: var(--subtext-color);
+            margin-top: 5px;
+        }
+
+        .main-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            width: 100%;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 25px;
+            text-align: center;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
+        }
+
+        .page-section {
+            display: none;
+        }
+
+        .page-section.active-section {
+            display: block;
+        }
+
+        .tags {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 15px;
+        }
+
+        .tag {
+            background: rgba(56, 189, 248, 0.1);
+            color: var(--accent-color);
+            padding: 5px 12px;
+            border-radius: 12px;
+            border: 1px solid var(--accent-color);
+            font-size: 0.9rem;
+        }
+
+        .board {
+            display: grid;
+            grid-template-columns: repeat(3, 90px);
+            gap: 10px;
+            justify-content: center;
+            margin: 20px 0;
+        }
+
+        .cell {
+            width: 90px;
+            height: 90px;
+            background-color: var(--cell-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            font-size: 2.5rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent-color);
+            transition: 0.2s;
+        }
+
+        .cell:hover {
+            background-color: rgba(56, 189, 248, 0.2);
+        }
+
+        .btn-action {
+            background-color: var(--accent-color);
+            color: #0b0f19;
+            border: none;
+            padding: 10px 20px;
+            font-weight: bold;
+            border-radius: 8px;
+            font-size: 1rem;
+            margin-top: 15px;
+            transition: 0.2s;
+        }
+
+        .btn-action:hover {
+            opacity: 0.9;
+            transform: scale(1.02);
+        }
+
+        .input-group {
+            position: relative;
+            margin: 20px 0 10px;
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 12px 16px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            background: var(--cell-bg);
+            color: var(--text-color);
+            font-size: 1rem;
+            outline: none;
+            text-align: inherit;
+        }
+
+        .strength-bar-wrapper {
+            height: 8px;
+            width: 100%;
+            background: var(--cell-bg);
+            border-radius: 4px;
+            overflow: hidden;
+            margin-top: 8px;
+        }
+
+        .strength-bar {
+            height: 100%;
+            width: 0%;
+            transition: width 0.3s, background-color 0.3s;
+        }
+
+        .click-area {
+            width: 100%;
+            height: 180px;
+            background: var(--cell-bg);
+            border: 2px dashed var(--accent-color);
+            border-radius: 12px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin: 20px 0;
+            user-select: none;
+            transition: background 0.1s;
+        }
+
+        .click-area:active {
+            background: rgba(56, 189, 248, 0.2);
+        }
+
+        .cps-stats {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 15px;
+            font-size: 1.1rem;
+            font-weight: bold;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            border-top: 1px solid var(--border-color);
+            background: var(--card-bg);
+        }
+
+        .discord-link {
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: bold;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            transition: 0.3s;
+        }
+
+        .discord-link:hover {
+            background: rgba(56, 189, 248, 0.1);
+            border-color: var(--accent-color);
+        }
     </style>
 </head>
 <body>
@@ -106,10 +397,9 @@ footer{text-align:center;padding:20px;border-top:1px solid var(--border-color);b
         <div id="homeSection" class="card page-section active-section">
             <h2 id="aboutTitle">من هو 6goodEXE؟ 👋</h2>
             <p id="aboutText" style="margin-top: 15px; color: var(--subtext-color); line-height: 1.8;">
-                أهلاً بيك! أنا <strong>أحمد (6goodEXE)</strong> من مصر 🇪🇬، عندي 17 سنة. بعشق عالم البرمجة والألعاب، وشغوف جداً ببرمجة الـ Backend والشبكات بـ <strong>Node.js</strong>. عارف إني لسه في بداية الطريق وبتعلم كل يوم حاجة جديدة، بس شغفي وإصراري مكملين للآخر ومبيقفوش! 🚀
+                أهلاً بيك! أنا <strong>أحمد (6goodEXE)</strong>، عندي 17 سنة. بعشق عالم البرمجة والألعاب، وشغوف جداً ببرمجة الـ Backend والشبكات بـ <strong>Node.js</strong>. عارف إني لسه في بداية الطريق وبتعلم كل يوم حاجة جديدة، بس شغفي وإصراري مكملين للآخر ومبيقفوش! 🚀
             </p>
             <div class="tags">
-                <span class="tag">🇪🇬 From Egypt</span>
                 <span class="tag">🟢 Node.js</span>
                 <span class="tag">😎 Discord Dev</span>
                 <span class="tag">💻 Coding Learner</span>
@@ -119,18 +409,6 @@ footer{text-align:center;padding:20px;border-top:1px solid var(--border-color);b
 
         <div id="gamesSection" class="card page-section">
             <h2 id="gameTitle">🎮 لعب Tic-Tac-Toe ضد البوت الذكي</h2>
-            
-            <div class="score-board">
-                <div class="score-box">
-                    <div class="score-title" id="lblPlayerScore">أنت (X)</div>
-                    <div class="score-num" id="playerScore">0</div>
-                </div>
-                <div class="score-box">
-                    <div class="score-title" id="lblBotScore">البوت (O)</div>
-                    <div class="score-num" id="botScore">0</div>
-                </div>
-            </div>
-
             <p id="gameStatus" style="color: var(--subtext-color); margin-top: 10px;">دورك يا بطل! (أنت X والبوت O)</p>
             <div class="board">
                 <div class="cell" onclick="playerMove(this, 0)"></div>
@@ -215,10 +493,8 @@ footer{text-align:center;padding:20px;border-top:1px solid var(--border-color);b
                 navHome: "🏠 الرئيسية",
                 subtitle: "دوس كليك يمين في أي حتة عشان تتنقل في الموقع! 🖱️✨",
                 aboutTitle: "من هو 6goodEXE؟ 👋",
-                aboutText: "أهلاً بيك! أنا <strong>أحمد (6goodEXE)</strong> من مصر 🇪🇬، عندي 17 سنة. بعشق عالم البرمجة والألعاب، وشغوف جداً ببرمجة الـ Backend والشبكات بـ <strong>Node.js</strong>. عارف إني لسه في بداية الطريق وبتعلم كل يوم حاجة جديدة، بس شغفي وإصراري مكملين للآخر ومبيقفوش! 🚀",
+                aboutText: "أهلاً بيك! أنا <strong>أحمد (6goodEXE)</strong>، عندي 17 سنة. بعشق عالم البرمجة والألعاب، وشغوف جداً ببرمجة الـ Backend والشبكات بـ <strong>Node.js</strong>. عارف إني لسه في بداية الطريق وبتعلم كل يوم حاجة جديدة، بس شغفي وإصراري مكملين للآخر ومبيقفوش! 🚀",
                 gameTitle: "🎮 لعب Tic-Tac-Toe ضد البوت الذكي",
-                lblPlayerScore: "أنت (X)",
-                lblBotScore: "البوت (O)",
                 gameStatus: "دورك يا بطل! (أنت X والبوت O)",
                 resetBtn: "إعادة اللعب 🔄",
                 passTitle: "🔐 أداة فحص قوة الباسورد",
@@ -241,10 +517,8 @@ footer{text-align:center;padding:20px;border-top:1px solid var(--border-color);b
                 navHome: "🏠 Home",
                 subtitle: "Right-click anywhere to pop up navigation & tools! 🖱️✨",
                 aboutTitle: "Who is 6goodEXE? 👋",
-                aboutText: "Hey there! I'm <strong>Ahmed (6goodEXE)</strong> from Egypt 🇪🇬, 17 years old. Totally into coding & gaming, and super passionate about backend dev & networking with <strong>Node.js</strong>. I know I'm still at the starting line learning new stuff every day, but my drive never stops! 🚀",
+                aboutText: "Hey there! I'm <strong>Ahmed (6goodEXE)</strong>, 17 years old. Totally into coding & gaming, and super passionate about backend dev & networking with <strong>Node.js</strong>. I know I'm still at the starting line learning new stuff every day, but my drive never stops! 🚀",
                 gameTitle: "🎮 Tic-Tac-Toe vs Smart AI",
-                lblPlayerScore: "You (X)",
-                lblBotScore: "Bot (O)",
                 gameStatus: "Your turn buddy! (You are X, AI is O)",
                 resetBtn: "Play Again 🔄",
                 passTitle: "🔐 Password Strength Checker",
@@ -276,8 +550,6 @@ footer{text-align:center;padding:20px;border-top:1px solid var(--border-color);b
             document.getElementById('aboutTitle').innerText = t.aboutTitle;
             document.getElementById('aboutText').innerHTML = t.aboutText;
             document.getElementById('gameTitle').innerText = t.gameTitle;
-            document.getElementById('lblPlayerScore').innerText = t.lblPlayerScore;
-            document.getElementById('lblBotScore').innerText = t.lblBotScore;
             document.getElementById('gameStatus').innerText = t.gameStatus;
             document.getElementById('resetBtn').innerText = t.resetBtn;
             document.getElementById('passTitle').innerText = t.passTitle;
@@ -322,32 +594,20 @@ footer{text-align:center;padding:20px;border-top:1px solid var(--border-color);b
 
         let board = ['', '', '', '', '', '', '', '', ''];
         let gameActive = true;
-        let playerScore = 0;
-        let botScore = 0;
-        let nextStarter = 'X';
-        let autoResetTimeout = null;
 
         function playerMove(cell, index) {
             if (board[index] !== '' || !gameActive) return;
             makeMove(index, 'X');
-
             if (checkWinner('X')) {
-                playerScore++;
-                document.getElementById('playerScore').innerText = playerScore;
-                document.getElementById('gameStatus').innerText = currentLang === 'ar' ? "جامد! كسبت البوت 🔥🎉 (جارِ البدء تلقائياً...)" : "You smoked the AI! 🎉 (Restarting...)";
+                document.getElementById('gameStatus').innerText = currentLang === 'ar' ? "جامد! كسبت البوت 🔥🎉" : "You smoked the AI! GG 🎉";
                 gameActive = false;
-                nextStarter = 'X';
-                scheduleAutoReset();
                 return;
             }
-
             if (!board.includes('')) {
-                document.getElementById('gameStatus').innerText = currentLang === 'ar' ? "تعادل! (جارِ البدء تلقائياً...)" : "It's a draw! (Restarting...)";
+                document.getElementById('gameStatus').innerText = currentLang === 'ar' ? "تعادل يا بطل!" : "It's a draw!";
                 gameActive = false;
-                scheduleAutoReset();
                 return;
             }
-
             document.getElementById('gameStatus').innerText = currentLang === 'ar' ? "البوت بيفكر... 🤖" : "AI is thinking... 🤖";
             setTimeout(aiMove, 350);
         }
@@ -356,32 +616,17 @@ footer{text-align:center;padding:20px;border-top:1px solid var(--border-color);b
             if (!gameActive) return;
             let bestIndex = findBestMove();
             makeMove(bestIndex, 'O');
-
             if (checkWinner('O')) {
-                botScore++;
-                document.getElementById('botScore').innerText = botScore;
-                document.getElementById('gameStatus').innerText = currentLang === 'ar' ? "البوت جابها! 🤖 (جارِ البدء تلقائياً...)" : "AI took the dub! 🤖 (Restarting...)";
+                document.getElementById('gameStatus').innerText = currentLang === 'ar' ? "البوت جابها! حاول تاني 🤖" : "AI took the dub! Try again 🤖";
                 gameActive = false;
-                nextStarter = 'O';
-                scheduleAutoReset();
                 return;
             }
-
             if (!board.includes('')) {
-                document.getElementById('gameStatus').innerText = currentLang === 'ar' ? "تعادل! (جارِ البدء تلقائياً...)" : "It's a draw! (Restarting...)";
+                document.getElementById('gameStatus').innerText = currentLang === 'ar' ? "تعادل يا بطل!" : "It's a draw!";
                 gameActive = false;
-                scheduleAutoReset();
                 return;
             }
-
             document.getElementById('gameStatus').innerText = currentLang === 'ar' ? "دورك يا بطل! (أنت X)" : "Your turn buddy! (You are X)";
-        }
-
-        function scheduleAutoReset() {
-            clearTimeout(autoResetTimeout);
-            autoResetTimeout = setTimeout(() => {
-                resetGame();
-            }, 2500);
         }
 
         function makeMove(index, symbol) {
@@ -415,17 +660,10 @@ footer{text-align:center;padding:20px;border-top:1px solid var(--border-color);b
         }
 
         function resetGame() {
-            clearTimeout(autoResetTimeout);
             board = ['', '', '', '', '', '', '', '', ''];
             gameActive = true;
+            document.getElementById('gameStatus').innerText = trans[currentLang].gameStatus;
             document.querySelectorAll('.cell').forEach(c => c.innerText = '');
-
-            if (nextStarter === 'O') {
-                document.getElementById('gameStatus').innerText = currentLang === 'ar' ? "الفائز يبدأ! البوت بيلعب الأول... 🤖" : "Winner starts! AI is thinking...";
-                setTimeout(aiMove, 500);
-            } else {
-                document.getElementById('gameStatus').innerText = currentLang === 'ar' ? "الفائز يبدأ! دورك يا بطل (أنت X)" : "Winner starts! Your turn (You are X)";
-            }
         }
 
         function checkPasswordStrength(pass) {
